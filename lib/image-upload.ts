@@ -2,19 +2,18 @@
 
 import { imagekit } from "./image-kit";
 
-
 export const ImageUpload = async (file: File) => {
-	if (!file) return null;
-	try {
-		const imageKitRef = await imagekit.files.upload({
-			file: file,
-			fileName: `image-${Date.now()}.png`,
-			folder: "/store-logos",
-		});
+  if (!file) return null;
+  try {
+    const imageKitRef = await imagekit.files.upload({
+      file: file,
+      fileName: `image-${Date.now()}.png`,
+      folder: "/store-logos",
+    });
 
-		return imageKitRef?.url ?? null;
-	} catch (error) {
-		console.error("ImageKit upload error:", error);
-		return null;
-	}
+    return imageKitRef?.url ?? null;
+  } catch (error) {
+    console.error("ImageKit upload error:", error);
+    return null;
+  }
 };

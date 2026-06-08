@@ -1,14 +1,15 @@
-import { Hono } from 'hono'
-import { handle } from 'hono/vercel'
+import accounts from "@/modules/accounts/server/accounts";
+import schedule from "@/modules/schedule/server/schedule";
+import { Hono } from "hono";
+import { handle } from "hono/vercel";
 
+const app = new Hono().basePath("/api");
 
-const app = new Hono().basePath('/api')
+const routes = app.route("/accounts", accounts).route("/schedule", schedule);
 
-const routes = app
-    .get('/hello', (c) => c.json({ message: 'Hello, World!' }))
-export const GET = handle(app)
-export const POST = handle(app)
-export const PATCH = handle(app)
-export const DELETE = handle(app)
+export const GET = handle(app);
+export const POST = handle(app);
+export const PATCH = handle(app);
+export const DELETE = handle(app);
 
-export type AppType = typeof routes
+export type AppType = typeof routes;

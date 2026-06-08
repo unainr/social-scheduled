@@ -1,4 +1,11 @@
-import { pgTable, text, timestamp, uuid, boolean, pgEnum } from "drizzle-orm/pg-core"
+import {
+  pgTable,
+  text,
+  timestamp,
+  uuid,
+  boolean,
+  pgEnum,
+} from "drizzle-orm/pg-core";
 
 // ─────────────────────────────────────────────
 // ENUMS
@@ -9,12 +16,9 @@ export const postStatusEnum = pgEnum("post_status", [
   "scheduled",
   "published",
   "failed",
-])
+]);
 
-export const platformEnum = pgEnum("platform", [
-  "linkedin",
-  "instagram",
-])
+export const platformEnum = pgEnum("platform", ["linkedin", "instagram"]);
 
 // ─────────────────────────────────────────────
 // CONNECTED ACCOUNTS
@@ -24,12 +28,13 @@ export const connectedAccounts = pgTable("connected_accounts", {
   id: uuid("id").defaultRandom().primaryKey(),
   userId: text("user_id").notNull(),
   platform: platformEnum("platform").notNull(),
+  zernioProfileId: text("zernio_profile_id").notNull(), // Zernio profile that owns this account
   zernioAccountId: text("zernio_account_id").notNull(),
   username: text("username"),
   profileImage: text("profile_image"),
   isActive: boolean("is_active").default(true).notNull(),
   connectedAt: timestamp("connected_at").defaultNow().notNull(),
-})
+});
 
 // ─────────────────────────────────────────────
 // POSTS
@@ -49,13 +54,13 @@ export const posts = pgTable("posts", {
   failureReason: text("failure_reason"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
-})
+});
 
 // ─────────────────────────────────────────────
 // TYPES
 // ─────────────────────────────────────────────
 
-export type ConnectedAccount = typeof connectedAccounts.$inferSelect
-export type NewConnectedAccount = typeof connectedAccounts.$inferInsert
-export type Post = typeof posts.$inferSelect
-export type NewPost = typeof posts.$inferInsert
+export type ConnectedAccount = typeof connectedAccounts.$inferSelect;
+export type NewConnectedAccount = typeof connectedAccounts.$inferInsert;
+export type Post = typeof posts.$inferSelect;
+export type NewPost = typeof posts.$inferInsert;

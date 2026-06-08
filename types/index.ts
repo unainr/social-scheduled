@@ -1,3 +1,3 @@
-export interface TypeLayout{
-    children: React.ReactNode
+export interface TypeLayout {
+  children: React.ReactNode;
 }

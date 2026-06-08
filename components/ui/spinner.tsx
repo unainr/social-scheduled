@@ -1,10 +1,10 @@
-import { cn } from "@/lib/utils"
-import { Loading03Icon } from "@hugeicons/core-free-icons"
-import { HugeiconsIcon } from "@hugeicons/react"
+import { cn } from "@/lib/utils";
+import { Loading03Icon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 
 type SpinnerProps = Omit<React.ComponentProps<"svg">, "strokeWidth"> & {
-  strokeWidth?: number
-}
+  strokeWidth?: number;
+};
 
 function Spinner({ className, strokeWidth = 2, ...props }: SpinnerProps) {
   return (
@@ -16,7 +16,7 @@ function Spinner({ className, strokeWidth = 2, ...props }: SpinnerProps) {
       className={cn("size-4 animate-spin", className)}
       {...props}
     />
-  )
+  );
 }
 
-export { Spinner }
+export { Spinner };

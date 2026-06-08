@@ -7,7 +7,7 @@ import { ThemeProvider } from "@/components/theme/theme-provider";
 import QueryProviders from "@/providers/query-provider";
 import { Toaster } from "@/components/ui/sonner";
 
-const figtree = Figtree({subsets:['latin'],variable:'--font-sans'});
+const figtree = Figtree({ subsets: ["latin"], variable: "--font-sans" });
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,23 +33,31 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={cn("h-full", "antialiased", geistSans.variable, geistMono.variable, "font-sans", figtree.variable)}
+      className={cn(
+        "h-full",
+        "antialiased",
+        geistSans.variable,
+        geistMono.variable,
+        "font-sans",
+        figtree.variable,
+      )}
     >
-     <ClerkProvider>
-				<body className="min-h-full flex flex-col">
-					<ThemeProvider
-						attribute="class"
-						defaultTheme="dark"
-						enableSystem
-						disableTransitionOnChange>
-						<QueryProviders>
-							{children}
+      <ClerkProvider>
+        <body className="min-h-full flex flex-col">
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <QueryProviders>
+              {children}
 
-							<Toaster />
-						</QueryProviders>
-					</ThemeProvider>
-				</body>
-			</ClerkProvider>
+              <Toaster />
+            </QueryProviders>
+          </ThemeProvider>
+        </body>
+      </ClerkProvider>
     </html>
   );
 }

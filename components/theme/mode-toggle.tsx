@@ -1,13 +1,21 @@
-"use client"
+"use client";
 
-import { motion } from "motion/react"
-import { useTheme } from "next-themes"
-import type { JSX } from "react"
-import { useSyncExternalStore } from "react"
+import { motion } from "motion/react";
+import { useTheme } from "next-themes";
+import type { JSX } from "react";
+import { useSyncExternalStore } from "react";
 
-import { cn } from "@/lib/utils"
-import { Monitor, MonitorDotIcon, Moon01Icon, Moon02Icon, Sun01Icon, Sun02Icon, Sun03Icon } from "@hugeicons/core-free-icons"
-import { HugeiconsIcon } from "@hugeicons/react"
+import { cn } from "@/lib/utils";
+import {
+  Monitor,
+  MonitorDotIcon,
+  Moon01Icon,
+  Moon02Icon,
+  Sun01Icon,
+  Sun02Icon,
+  Sun03Icon,
+} from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
 
 function ThemeOption({
   icon,
@@ -15,10 +23,10 @@ function ThemeOption({
   isActive,
   onClick,
 }: {
-  icon: JSX.Element
-  value: string
-  isActive?: boolean
-  onClick: (value: string) => void
+  icon: JSX.Element;
+  value: string;
+  isActive?: boolean;
+  onClick: (value: string) => void;
 }) {
   return (
     <button
@@ -26,7 +34,7 @@ function ThemeOption({
         "relative flex size-8 cursor-default items-center justify-center rounded-full transition-[color] [&_svg]:size-4",
         isActive
           ? "text-zinc-950 dark:text-zinc-50"
-          : "text-zinc-400 hover:text-zinc-950 dark:text-zinc-500 dark:hover:text-zinc-50"
+          : "text-zinc-400 hover:text-zinc-950 dark:text-zinc-500 dark:hover:text-zinc-50",
       )}
       role="radio"
       aria-checked={isActive}
@@ -43,12 +51,14 @@ function ThemeOption({
         />
       )}
     </button>
-  )
+  );
 }
 
 const THEME_OPTIONS = [
   {
-    icon: <HugeiconsIcon icon={MonitorDotIcon} strokeWidth={2} className="size-4" />,
+    icon: (
+      <HugeiconsIcon icon={MonitorDotIcon} strokeWidth={2} className="size-4" />
+    ),
     value: "system",
   },
   {
@@ -56,22 +66,24 @@ const THEME_OPTIONS = [
     value: "light",
   },
   {
-    icon: <HugeiconsIcon icon={Moon02Icon} strokeWidth={2} className="size-4" />,
+    icon: (
+      <HugeiconsIcon icon={Moon02Icon} strokeWidth={2} className="size-4" />
+    ),
     value: "dark",
   },
-]
+];
 
 function ThemeSwitcher() {
-  const { theme, setTheme } = useTheme()
+  const { theme, setTheme } = useTheme();
 
   const isMounted = useSyncExternalStore(
     () => () => {},
     () => true,
-    () => false
-  )
+    () => false,
+  );
 
   if (!isMounted) {
-    return <div className="flex h-8 w-24" />
+    return <div className="flex h-8 w-24" />;
   }
 
   return (
@@ -93,7 +105,7 @@ function ThemeSwitcher() {
         />
       ))}
     </motion.div>
-  )
+  );
 }
 
-export { ThemeSwitcher }
+export { ThemeSwitcher };
