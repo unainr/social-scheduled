@@ -18,11 +18,9 @@ export const useConnectAccount = () => {
       });
       const json = await res.json();
 
-      if (!res.ok) {
-        throw new Error(json.message ?? "Failed to get connect URL");
-      }
+     
 
-      return json.data.url;
+      return json.data;
     },
     onSuccess: (data) => {
       // redirect to Zernio OAuth
